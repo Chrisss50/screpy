@@ -20,6 +20,9 @@ var roleHarvester = {
                     creep.moveTo(targets[0]);
                 }
             }
+            else {
+                creep.moveTo(Game.spawns["Spawn1"]);
+            }
         }
     }
 };
