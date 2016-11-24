@@ -2,7 +2,7 @@ var roleBuilder = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-
+        var dest = "W7S68";
 	    if(creep.memory.building && creep.carry.energy == 0) {
             creep.memory.building = false;
             creep.say('harvesting');
@@ -13,11 +13,18 @@ var roleBuilder = {
 	    }
 
 	    if(creep.memory.building) {
-	        var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
-            if(targets.length) {
-                if(creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(targets[0]);
-                }
+	    	if (creep.memory.workingRoom != creep.room.name) {
+                creep.moveTo(creep.pos.findClosestByRange(creep.room.findExitTo(creep.memory.workingRoom)));
+			}
+			else {
+                var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
+                if (targets.length) {
+                    if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(targets[0]);
+                    }
+                } else {
+                	creep.moveTo(Game.flags["UnusedBuilder"+creep.memory.workingRoom]);
+				}
             }
 	    }
 	    else {
