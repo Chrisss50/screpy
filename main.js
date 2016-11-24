@@ -29,11 +29,11 @@ module.exports.loop = function () {
         console.log('Spawning new harvester: ' + newName);
     }
     if(builders.length < 3) {
-        var newName = Game.spawns['Spawn1'].createCreep(["work", "carry", "move"], undefined, {role: 'builder'});
+        var newName = Game.spawns['Spawn1'].createCreep(["work", "work", "carry", "carry", "move"], undefined, {role: 'builder'});
         console.log('Spawning new harvester: ' + newName);
     }
-    if(upgrader.length < 3 && Game.spawns["Spawn1"].energy >= 200) {
-        var newName = Game.spawns['Spawn1'].createCreep(["work", "carry", "move"], undefined, {role: 'upgrader'});
+    if(upgrader.length < 3) {
+        var newName = Game.spawns['Spawn1'].createCreep(["work", "work", "carry", "carry", "move"], undefined, {role: 'upgrader'});
         console.log('Spawning new harvester: ' + newName);
     }
 };
